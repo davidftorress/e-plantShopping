@@ -6,7 +6,6 @@ import { addItem } from './CartSlice';
 
 function ProductList() {
     const cart = useSelector(state => state.cart.items);
-    const TotalCartItemQuantity = cart.length;
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
@@ -239,7 +238,14 @@ function ProductList() {
     fontSize: '30px',
     textDecoration: 'none',
    }
-
+const  calculateTotalCartItemQuantity = (cartArray) =>{
+    let totalItem=0;
+    cartArray.map(item => {
+        totalItem= totalItem + item.quantity;
+         });
+    return totalItem;
+   }
+const TotalCartItemQuantity = calculateTotalCartItemQuantity(cart);
 
 const handleCartClick = (e) => {
     e.preventDefault();
